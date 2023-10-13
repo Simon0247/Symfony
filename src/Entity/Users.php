@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class Users implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -45,9 +47,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 50)]
     private ?string $ville = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Commande $commandes = null;
+    // #[ORM\ManyToOne]
+    // #[ORM\JoinColumn(nullable: false)]
+    // private ?Commande $commandes = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function getId(): ?int
     {
@@ -191,14 +196,26 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCommandes(): ?Commande
+    // public function getCommandes(): ?Commande
+    // {
+    //     return $this->commandes;
+    // }
+
+    // public function setCommandes(?Commande $commandes): self
+    // {
+    //     $this->commandes = $commandes;
+
+    //     return $this;
+    // }
+
+    public function isVerified(): bool
     {
-        return $this->commandes;
+        return $this->isVerified;
     }
 
-    public function setCommandes(?Commande $commandes): self
+    public function setIsVerified(bool $isVerified): self
     {
-        $this->commandes = $commandes;
+        $this->isVerified = $isVerified;
 
         return $this;
     }

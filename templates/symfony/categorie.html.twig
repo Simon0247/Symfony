@@ -1,0 +1,36 @@
+{% extends "base.html.twig"%}
+
+{% block body %}
+	<main class="" container>
+		<section class="" row>
+			<div class="col-12 p-0">
+				<img src="/media/bg2.jpeg" class="img-fluid w-100 h-auto"/>
+				<h1>Liste des catégories<h1>
+						<div class="row">
+							{% for categorie in liste %}
+								{# <div class="card" style="width:  18rem;">
+																																									<img clss="card-img-top" src="..." alt="">
+																																										<div class="card-body">
+																																											<p class="card-text"></p>
+																																												<img src="/media/category/{{categorie.image}}" href="{{ path('categorie', { 'category': categorie.id }) }}" class="btn btn" class="img-fluid"/>
+																																													<div class="btn btn-primary">
+																																														{{ categorie.libelle}}
+																																															</div>
+																																																</div>
+																																																	</div> #}
+								<div class="col-3 mb-3">
+									<div class="card  mx-auto" style="width: 18rem; " src="..." alt="">
+										<a href="{{ path('categorie_plats', { 'cat': categorie.id }) }}" class="">
+											<img src="/media/category/{{categorie.image}}" class="btn btn card-img-top img-fluid p-10"/>
+											<div class="card-body">
+												<p class="card-text"></p>
+												Plat
+											</div>
+										</a>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</section>
+				</main>
+			{% endblock %}

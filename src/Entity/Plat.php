@@ -29,10 +29,10 @@ class Plat
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plat')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Detail $detail = null;
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    private ?Categorie $categorie = null;
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -98,15 +98,17 @@ class Plat
         return $this;
     }
 
-    public function getDetail(): ?Detail
+    public function getCategorie(): ?Categorie
     {
-        return $this->detail;
+        return $this->categorie;
     }
 
-    public function setDetail(?Detail $detail): self
+    public function setCategorie(?Categorie $categorie): self
     {
-        $this->detail = $detail;
+        $this->categorie = $categorie;
 
         return $this;
     }
+
+   
 }

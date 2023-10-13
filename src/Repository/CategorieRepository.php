@@ -19,6 +19,8 @@ class CategorieRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categorie::class);
+        
+
     }
 
     public function save(Categorie $entity, bool $flush = false): void
@@ -38,6 +40,24 @@ class CategorieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
+    public function getSomeArtists($name)
+{
+        //$name est un paramètre qui pour cet exemple a comme valeur "Neil";
+
+        $qb = $this->createQueryBuilder('a');
+        $query = $qb
+            ->andWhere('a.libelle like :name') //le `placeholder, comme en PDO!
+            ->setParameter('name', '%'.$name.'%')
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery();
+
+        $artists = $query->getResult();
+        return $artists;
+    }  
+
+
 
 //    /**
 //     * @return Categorie[] Returns an array of Categorie objects

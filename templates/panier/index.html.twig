@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!
+{% endblock %}
+
+{% block body %}
+
+
+{# {% block content %} #}
+	<h1>Mon panier</h1>
+	<div>
+		<a href="/panier">
+			panier ({{app.session.get("panier") | length}})
+		</a>
+	</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Total</th>
+					<th></th>
+				</tr>
+			</thead>
+            <tbody>
+			{% for item in panier %}
+				
+				
+					<tr>
+						<td>
+							{{ item.plat.libelle}}
+							</a>
+                        </td>
+						<td>
+							{{ item.plat.prix}}
+							</a>
+                        </td>
+						<td>
+							{{ item.quantite}}
+							</a>
+                        </td>
+						<td>
+							{{ item.quantite * item.plat.prix}}
+							</a>
+                        </td>
+
+						<td>
+                            <a href="#" class="btn btn-dansger btn-sm">
+                            <i class="fas fa-trash"></i>Supprimer
+							</a>
+                        </td>
+                    </tr>
+			{% endfor %}
+            </tbody>
+		</table>
+{% endblock %}

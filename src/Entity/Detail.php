@@ -18,9 +18,7 @@ class Detail
     #[ORM\Column]
     private ?int $quantite = null;
 
-    #[ORM\OneToMany(mappedBy: 'detail', targetEntity: Plat::class)]
-    private Collection $plat;
-
+    
     public function __construct()
     {
         $this->plat = new ArrayCollection();
@@ -43,33 +41,5 @@ class Detail
         return $this;
     }
 
-    /**
-     * @return Collection<int, Plat>
-     */
-    public function getPlat(): Collection
-    {
-        return $this->plat;
-    }
-
-    public function addPlat(Plat $plat): self
-    {
-        if (!$this->plat->contains($plat)) {
-            $this->plat->add($plat);
-            $plat->setDetail($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlat(Plat $plat): self
-    {
-        if ($this->plat->removeElement($plat)) {
-            // set the owning side to null (unless already changed)
-            if ($plat->getDetail() === $this) {
-                $plat->setDetail(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

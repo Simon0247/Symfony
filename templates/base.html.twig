@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Welcome to the District!
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -13,7 +13,8 @@
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/zephyr/bootstrap.min.css" integrity="sha512-dcTg+pv6j02FTyko5ua8nsnARs/l4u43vmnbeVgkFWB5wdLgfUq4CEotFWOlTE4XK7FfVriWj7BrpqET/a+SJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/zephyr/bootstrap.min.css" integrity="sha512-dcTg+pv6j02FTyko5ua8nsnARs/l4u43vmnbeVgkFWB5wdLgfUq4CEotFWOlTE4XK7FfVriWj7BrpqET/a+SJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="stylesheet" href="/css/style.css"/>
 		{% endblock %}
 
 		{% block javascripts %}
@@ -21,7 +22,64 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
-		{% block header %}{% endblock %}
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Symfony</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('accueil') }}">Acceuil
+								<span class="visually-hidden">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('categorie') }}">Categories</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('plats') }}">Plats</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('commande') }}">Commande</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('contact') }}">Contact</a>
+						</li>
+						<div>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('panier')}}">Panier</a>
+								<i class="fa-solid fa-basket-shopping"></i>
+							</li>
+						</div>
+					</ul>
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item d-flex">
+							<a class="nav-link" href="{{ path('connexion')}}">connexion</a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+			{% block body %}{% endblock %}
+		</body>
 	</body>
-</html>
+	<br>
+	<div container="row">
+		<div class="d-flex bd-highlight mb-3">
+			<div class="button btn btn-primary">précédent</div>
+			<div class="p-2 bd-highlight"></div>
+			<div class=" button ms-auto btn btn-primary">suivant</div>
+		</div>
+	</div>
+	<br>
+	<div class="marge_footer ">
+		<h2 class="text-center border border-dark">
+			<img src="/logo/fb.png" class="logo_footer" alt="" srcset="">
+			<img src="/logo/Instagrame.jpeg" class="logo_footer" alt="" srcset="">
+			<img src="/logo/x-logo-twitter.webp" class="logo_footer" alt="" srcset="">
+			<h2></div>
+		</html>
+
+		{# <i class="fa-solid fa-right-to-bracket text-primary mx-2 display-6"></i> #}
